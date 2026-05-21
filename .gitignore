@@ -2,6 +2,8 @@
 .antigravitycli/
 .claude/settings.local.json
 **/.claude/settings.local.json
+bqca/.claude/
+bqca-a2a/.claude/
 **/.google-agents-cli/
 **/.adk/
 
