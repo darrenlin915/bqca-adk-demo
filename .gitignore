@@ -1,0 +1,30 @@
+# Local agent CLI / IDE state
+.antigravitycli/
+.claude/settings.local.json
+**/.claude/settings.local.json
+**/.google-agents-cli/
+**/.adk/
+
+# Secrets and deployment artifacts
+**/.env
+**/.env.*
+**/deployment_metadata.json
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+**/.venv/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+**/.ty/
+*.egg-info/
+build/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
