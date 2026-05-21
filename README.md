@@ -255,7 +255,7 @@ Open your Gemini Enterprise app, start a new conversation, and pick one of the r
 
 ## Architecture notes
 
-**OAuth flow.** Gemini Enterprise holds the user's refresh token under the `authorizationId` you attached to the agent. Each invocation, it injects a fresh access token into `tool_context.state["<AUTH_ID>"]` (sometimes under `temp:<AUTH_ID>`). The agent's `_negotiate_creds` ([`bqca/app/tools.py`](./bqca/app/tools.py)) checks both keys, then falls back to the ADK auth-request flow for local dev.
+**OAuth flow.** Gemini Enterprise holds the user's refresh token under the `authorizationId` you attached to the agent. Each invocation, it injects a fresh access token into `tool_context.state["<AUTH_ID>"]` (sometimes under `temp:<AUTH_ID>`) — see the [`adk-ae-oauth` sample](https://github.com/google/adk-samples/tree/main/python/agents/adk-ae-oauth#production-agent-runtime--gemini-enterprise) for the canonical three-stage `negotiate_creds()` pattern this implementation is based on. The agent's `_negotiate_creds` ([`bqca/app/tools.py`](./bqca/app/tools.py)) checks both keys, then falls back to the ADK auth-request flow for local dev.
 
 **Why two variants.** ADK on Agent Runtime is the lower-friction managed path (no Dockerfile, single deploy command). A2A on Cloud Run is the same agent surfaced via the Agent-to-Agent protocol — useful when you want a callable HTTP endpoint with an agent card, or to compose with other A2A agents.
 
@@ -297,4 +297,4 @@ gcloud secrets delete oauth-client-secret --project=<DEPLOY_PROJECT>
 - Cloud Run deployment: https://adk.dev/deploy/cloud-run
 - A2A protocol: https://google.github.io/adk-docs/a2a/
 - BigQuery Conversational Analytics: https://cloud.google.com/bigquery/docs/conversational-analytics
-- Gemini Enterprise authorizations: https://cloud.google.com/gemini-enterprise/docs/authorizations
+- Gemini Enterprise authorizations: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.authorizations
